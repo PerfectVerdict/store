@@ -1,8 +1,70 @@
-import User from '../models/userModel.js'
-import asyncHandler from '../middlewares/asyncHandler.js'
+import User from "../models/userModel.js";
+import asyncHandler from "../middlewares/asyncHandler.js";
 
 const createUser = asyncHandler(async (req, res) => {
-    res.send("created");
-})
+  const { username, email, password } = req.body;
 
-export { createUser }
+  if (!username || !email || !password) {
+    throw new Error("Please fill all the inputs.");
+  }
+
+  const userExists = await User.findOne({email})
+  if (userExists) res.status(400).send("User alread exists.")
+});
+
+export { createUser };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
